@@ -1,6 +1,8 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
+package-lock.json
+yarn.lock
 *.jks
 *.p8
 *.p12
@@ -11,3 +13,27 @@ web-build/
 
 # macOS
 .DS_Store
+
+Backups/
+blob_storage/
+Cache/
+CachedData/
+CachedExtensions/
+Code Cache/
+Cookies
+Cookies-journal
+Crash Reports/
+Dictionaries/
+GPUCache/
+Local Storage/
+Network Persistent State
+TransportSecurity
+User/
+exthost Crash Reports/
+languagepacks.json
+logs/
+machineid
+rapid_render.json
+storage.json
+1.52.0-main.sock
+1.52.0-shared.sock
