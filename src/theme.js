@@ -11,11 +11,11 @@ const theme = {
       subheading: 16,
     },
     fonts: {
-      main: PlatForm.select({
+      main: 'System'/*PlatForm.select({
         android: () => 'Roboto',
         ios: () => 'Arial',
-        default: () => 'System'
-      }),
+        default: () => 'System',
+      })*/,
     },
     fontWeights: {
       normal: '400',

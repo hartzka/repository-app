@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   flexItemB: {
     flexGrow: 1,
+    flexShrink: 1,
     padding: 8,
   },
   flexItemC: {
