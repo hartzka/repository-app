@@ -21,14 +21,8 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const authStorage = useContext(AuthStorageContext);
   const token = authStorage.getAccessToken();
-  const { data, error, loading } = useQuery(AUTHORIZED_USER, {
-    context: {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    }
-  });
-  console.log(data)
+  const { data, error, loading } = useQuery(AUTHORIZED_USER);
+  
   return (
     <TouchableWithoutFeedback style={styles.container}>
       <View style={styles.container}>

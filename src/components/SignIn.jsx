@@ -42,23 +42,41 @@ const SignInForm = ({ onSubmit }) => {
   return (
     <View>
       <FormikTextInput
+        testID='usernameField'
         name='username'
         placeholder='Username'
         value={usernameField.value}
         onChangeText={text => usernameHelpers.setValue(text)}
       />
       <FormikSecureTextInput
+        testID='passwordField'
         name='password'
         placeholder='Password'
         value={passwordField.value}
         onChangeText={text => passwordHelpers.setValue(text)}
       />
-      <TouchableHighlight style={styles.submit} onPress={onSubmit}>
+      <TouchableHighlight
+         testID='submitButton'
+         style={styles.submit}
+         onPress={onSubmit}
+      >
         <Text style={styles.submitText}>Sign in</Text>
       </TouchableHighlight>
     </View>
   );
 };
+
+export const SignInContainer = ({ onSubmit }) => {
+  return (
+    <Formik 
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}  
+    >
+      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
+    </Formik>
+  );
+}
 
 const SignIn = () => {
 
@@ -69,20 +87,13 @@ const SignIn = () => {
 
     try {
       const { data } = await signIn({ username, password });
-      console.log(data);
     } catch (e) {
       console.log(e);
     }
   };
 
   return (
-    <Formik 
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}  
-    >
-      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
-    </Formik>
+    <SignInContainer onSubmit={onSubmit}></SignInContainer>
   );
 };
 

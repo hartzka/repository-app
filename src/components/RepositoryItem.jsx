@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, TouchableHighlight, StyleSheet } from 'react-native';
 import Text from './Text'
 import Constants from 'expo-constants';
 import theme from '../theme';
+import * as Linking from 'expo-linking';
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+  },
   flexContainer: {
     paddingTop: Constants.statusBarHeight,
     backgroundColor: 'white',
@@ -50,12 +54,24 @@ const styles = StyleSheet.create({
   flexItemC: {
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  submit: {
+    margin: 10,
+    padding: 10,
+    backgroundColor: theme.colors.primary,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
+  submitText: {
+    color:'#fff',
+    textAlign:'center',
   }
 });
 
 const RepositoryItem = (props) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.flexContainer}>
         <View style={styles.flexItemA}>
         <Image
@@ -64,33 +80,40 @@ const RepositoryItem = (props) => {
         />
         </View>
         <View style={styles.flexItemB}>
-          <Text fontWeight='bold' fontSize='subheading'>{props.fullName}</Text>
-          <Text>{props.description}</Text>
-          <Text style={styles.language}>{props.language}</Text>
+          <Text testID='name' fontWeight='bold' fontSize='subheading'>{props.fullName}</Text>
+          <Text testID='description'>{props.description}</Text>
+          <Text testID='language' style={styles.language}>{props.language}</Text>
         </View>
       </View>
       <View style={styles.flexContainer2}>
         <View style={styles.flexItemC}>
           {props.stars >= 1000 ?
-          <Text fontWeight='bold'>{(props.stars/1000).toFixed(1)}k</Text> :
-          <Text>{props.stars}</Text>}
+          <Text testID='stars' fontWeight='bold'>{(props.stars/1000).toFixed(1)}k</Text> :
+          <Text testID='stars'>{props.stars}</Text>}
           <Text>Stars</Text>
         </View>
         <View style={styles.flexItemC}>
           {props.forks >= 1000 ?
-          <Text fontWeight='bold'>{(props.forks/1000).toFixed(1)}k</Text> :
-          <Text fontWeight='bold'>{props.forks}</Text>}
+          <Text testID='forks' fontWeight='bold'>{(props.forks/1000).toFixed(1)}k</Text> :
+          <Text testID='forks' fontWeight='bold'>{props.forks}</Text>}
           <Text>Forks</Text>
         </View>
         <View style={styles.flexItemC}>
-          <Text fontWeight='bold'>{props.reviews}</Text>
+          <Text testID='reviews' fontWeight='bold'>{props.reviews}</Text>
           <Text>Reviews</Text>
         </View>
         <View style={styles.flexItemC}>
-          <Text fontWeight='bold'>{props.rating}</Text>
+          <Text testID='rating' fontWeight='bold'>{props.rating}</Text>
           <Text>Rating</Text>
         </View>
       </View>
+      {props.openButton &&
+      <TouchableHighlight
+         style={styles.submit}
+         onPress={() => {Linking.openURL(props.url);}}
+      >
+        <Text style={styles.submitText}>Open in GitHub</Text>
+      </TouchableHighlight>}
     </View>
   );
 };
