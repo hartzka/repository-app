@@ -10,6 +10,7 @@ yarn.lock
 *.mobileprovision
 *.orig.*
 web-build/
+.env
 
 # macOS
 .DS_Store
